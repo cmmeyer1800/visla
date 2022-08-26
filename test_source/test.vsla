@@ -2,15 +2,21 @@ canvas{
     width = 300;
     height = 300;
     line {
-        width = 10;
+        width = 1;
         start = (0,0);
         end = (100, 100);
         color = (0, 255, 255);
     };
     line {
-        width = 10;
+        width = 1;
         start = (0,100);
         end = (100, 0);
         color = (255, 255, 0);    
-    }
+    };
+    rect {
+        center = (50,50);
+        width = 100;
+        height = 100;
+        color = (255, 255, 255);
+    };
 };

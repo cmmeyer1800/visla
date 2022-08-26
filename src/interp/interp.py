@@ -1,6 +1,6 @@
 from src.ast.node import ASTNode
 from src.errors import throw_error
-from src.drawer import Line
+from src.drawer import Line, Rect
 from src.helpers import str_to_tuple
 import pygame
 
@@ -12,6 +12,7 @@ class Interpreter:
 
         self.ast = ast
         self.lines = []
+        self.rects = []
 
     # -------------------------------------------------------------------------
 
@@ -38,6 +39,9 @@ class Interpreter:
 
         if head.value == "line":
             self.build_line(head)
+
+        if head.value == "rect":
+            self.build_rect(head)
 
         for child in head.children:
             self.traverse_ast(child)
@@ -124,6 +128,66 @@ class Interpreter:
             Line(start, end, width, color, self.canvas)
         )
 
+    # -------------------------------------------------------------------------
+
+    def build_rect(self, node: ASTNode) -> None:
+        center: tuple = None
+        height: tuple = None
+        width: int = None
+        border_width: int = None
+        color: tuple = None
+
+        for child in node.children:
+            if "center" in child.value:
+                str_rep = child.value.split("=")[1]
+                parsed = str_to_tuple(str_rep, 2)
+                if parsed == None:
+                    throw_error(f"Value {str_rep} needs to be a tuple of 2 ints but cannot be interpretted as such")
+                center = parsed
+
+            if "width" in child.value and "border_width" not in child.value:
+                try:
+                    parsed = int(child.value.split("=")[1])
+                except:
+                    throw_error(f"Value {width} needs to be an integer but cannot be interpretted as such")
+                width = parsed
+
+            if "height" in child.value:
+                try:
+                    parsed = int(child.value.split("=")[1])
+                except:
+                    throw_error(f"Value {width} needs to be an integer but cannot be interpretted as such")
+                height = parsed
+
+            if "border_width" in child.value:
+                try:
+                    parsed = int(child.value.split("=")[1])
+                except:
+                    throw_error(f"Value {parsed} needs to be an integer but cannot be interpretted as such")
+                border_width = parsed
+
+            if "color" in child.value:
+                str_rep = child.value.split("=")[1]
+                parsed = str_to_tuple(str_rep, 3)
+                if parsed == None:
+                    throw_error(f"Value {str_rep} needs to be a tuple of 3 ints but cannot be interpretted as such")
+                color = parsed
+        
+        if center == None:
+            throw_error("line missing start parameter which is needed")
+        if height == None:
+            throw_error("line missing end parameter which is needed")
+        if width == None:
+            throw_error("line missing width parameter which is needed")
+        if color == None:
+            throw_error("line missing color parameter which is needed")
+        if border_width == None:
+            border_width = 1
+
+
+        self.rects.append(
+            Rect(center, height, width, color, self.canvas, border_width)
+        )
 
     # -------------------------------------------------------------------------
 
@@ -146,6 +210,9 @@ class Interpreter:
             
             for line in self.lines:
                 line.draw()
+
+            for rect in self.rects:
+                rect.draw()
 
             pygame.display.flip()       
 
