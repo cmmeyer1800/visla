@@ -15,7 +15,7 @@ class Line:
         self.parent: pygame.Surface = parent
 
         # Should be only left in for debugging purposes, slows down execution unnecessarily
-        #self.asserts()
+        # self.asserts()
 
     # -------------------------------------------------------------------------
 
@@ -23,9 +23,7 @@ class Line:
         """
         Draws a line using the parameters passed into the function on the parent surface passed during initialization
         """
-        pygame.draw.line(
-            self.parent, self.color, self.start, self.end, self.width
-        )
+        pygame.draw.line(self.parent, self.color, self.start, self.end, self.width)
 
     # -------------------------------------------------------------------------
 
@@ -39,7 +37,6 @@ class Line:
         assert type(self.width) == int
         assert type(self.color) == tuple
         assert type(self.parent) == pygame.Surface
-
 
         assert self.start[0] > 0 and self.start[0] < self.parent.get_width()
         assert self.start[1] > 0 and self.start[1] < self.parent.get_height()

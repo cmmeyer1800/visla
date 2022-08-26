@@ -3,7 +3,7 @@ from src.errors import throw_error
 
 SYMBOLS = [";", "{", "}"]
 
-FUNCTIONAL_BLOCKS = ["canvas", "line", "rect"]
+FUNCTIONAL_BLOCKS = ["canvas", "line", "rect", "ellipse"]
 
 KEYWORDS = []
 

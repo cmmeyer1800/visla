@@ -1,7 +1,7 @@
 import pygame
 
 
-class Rect:
+class Ellipse:
     def __init__(
         self,
         center: tuple,
@@ -30,11 +30,11 @@ class Rect:
         left = self.center[0] - (self.width / 2)
         top = self.center[1] - (self.height / 2)
 
-        pygame.draw.rect(
+        pygame.draw.ellipse(
             self.parent,
             self.color,
             pygame.Rect(left, top, self.width, self.height),
-            self.border_width,
+            self.border_width
         )
 
     # -------------------------------------------------------------------------
