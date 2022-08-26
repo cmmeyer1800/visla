@@ -8,7 +8,7 @@ A Simple Syntax Drawing Language
 
 ## Purpose:
 
-This language was written as an educational tool for myself to understand the components and composition of a "programming" language. For this reasons Visla uses the following conventional language components:
+This language was written as an educational tool for myself to understand the components and composition of a "programming" language. For this reason Visla uses the following conventional language components:
 
 - Lexer
 - Tokenization
@@ -21,7 +21,7 @@ This language was written as an educational tool for myself to understand the co
 
 ## Syntax:
 
-Visla in its current early state uses a very json esc syntax as can be seen below:
+Visla in its current early state uses a very json esc syntax with "objects" or Functional Blocks as they are called in Visla can be nested and belong to the parent object. Functional Blocks have different Parameters that are used in order to draw them. An example can be seen below:
 
 ```
 canvas{
@@ -55,3 +55,23 @@ canvas{
 
 Which will create the following drawing:
 ![](https://github.com/cmmeyer1800/visla/blob/main/assets/simple_example.png?raw=true)
+
+In this example the 4 Functional blocks belong to the canvas in which they are drawn and have the parameters that specify things such as bounding boxes, colors, etc.
+
+## Features In Progress:
+
+The following list will be used to track the features that I would like to add to Visla to make it a more rich project, listed in order of priority:
+
+- **INSTALLATION**
+- More Primitive Functional Blocks
+    - Circle
+    - Arc
+    - Polygons
+- Comments
+- Variables
+- Functional Block Naming
+- Loops
+- More Verbose Error Messages
+- Primitive Functional Block Improvements
+    - Line Styling
+        - Dashed
