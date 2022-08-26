@@ -75,5 +75,7 @@ The following list will be used to track the features that I would like to add t
 - Primitive Functional Block Improvements
     - Line Styling
         - Dashed
+    - Canvas
+        - ~~Background Color~~
     - General
         - ~~Solid Enclosed Shapes~~

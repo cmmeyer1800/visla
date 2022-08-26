@@ -56,6 +56,7 @@ class Interpreter:
 
         width = None
         height = None
+        color = None
 
         for child in node.children:
             if "width" in child.value:
@@ -76,10 +77,23 @@ class Interpreter:
                     )
                 height = parsed
 
+            if "color" in child.value:
+                str_rep = child.value.split("=")[1]
+                parsed = str_to_tuple(str_rep, 3)
+                if parsed == None:
+                    throw_error(
+                        f"Value {str_rep} needs to be a tuple of 3 ints but cannot be interpretted as such"
+                    )
+                color = parsed
+
         if height == None:
             throw_error("Canvas missing height parameter which is needed")
         if width == None:
             throw_error("Canvas missing width parameter which is needed")
+        if color == None:
+            color = (0,0,0)
+
+        self.background_color = color
 
         self.canvas = pygame.display.set_mode((width, height))
 
@@ -322,7 +336,7 @@ class Interpreter:
                 if event.type == pygame.QUIT:
                     running = False
 
-            self.canvas.fill((0, 0, 0))
+            self.canvas.fill(self.background_color)
 
             for line in self.lines:
                 line.draw()

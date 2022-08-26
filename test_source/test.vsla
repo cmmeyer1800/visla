@@ -1,6 +1,7 @@
 canvas{
     width = 300;
     height = 300;
+    background_color = (50,50,50);
     line {
         start = (150,100);
         end = (150, 200);
@@ -16,7 +17,6 @@ canvas{
         width = 300;
         height = 300;
         color = (0, 0, 255);
-        solid = true;
     };
     ellipse {
         center = (150, 150);
@@ -29,7 +29,6 @@ canvas{
         width = 10;
         height = 10;
         color = (255, 255, 255);
-        solid = true;
     };
 };
 
