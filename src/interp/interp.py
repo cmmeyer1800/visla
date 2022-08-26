@@ -118,11 +118,10 @@ class Interpreter:
             throw_error("line missing start parameter which is needed")
         if end == None:
             throw_error("line missing end parameter which is needed")
-        if width == None:
-            throw_error("line missing width parameter which is needed")
         if color == None:
             throw_error("line missing color parameter which is needed")
-
+        if width == None:
+            width = 1
 
         self.lines.append(
             Line(start, end, width, color, self.canvas)
