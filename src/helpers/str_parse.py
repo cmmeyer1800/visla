@@ -10,3 +10,12 @@ def str_to_tuple(str_rep: str, length: int) -> tuple:
         return None
 
     return ret
+
+
+def str_to_bool(str_rep: str) -> bool:
+    if str_rep == "true":
+        return True
+    elif str_rep == "false":
+        return False
+    else:
+        return None

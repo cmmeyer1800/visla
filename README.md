@@ -76,4 +76,4 @@ The following list will be used to track the features that I would like to add t
     - Line Styling
         - Dashed
     - General
-        - Solid Enclosed Shapes
+        - ~~Solid Enclosed Shapes~~

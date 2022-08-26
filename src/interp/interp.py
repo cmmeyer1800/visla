@@ -1,7 +1,7 @@
 from src.ast.node import ASTNode
 from src.errors import throw_error
 from src.drawer import Line, Rect, Ellipse
-from src.helpers import str_to_tuple
+from src.helpers import str_to_tuple, str_to_bool
 import pygame
 
 # -----------------------------------------------------------------------------
@@ -147,6 +147,7 @@ class Interpreter:
         width: int = None
         border_width: int = None
         color: tuple = None
+        solid: bool = None
 
         for child in node.children:
             if "center" in child.value:
@@ -194,6 +195,15 @@ class Interpreter:
                     )
                 color = parsed
 
+            if "solid" in child.value:
+                str_rep = child.value.split("=")[1]
+                parsed = str_to_bool(str_rep)
+                if parsed == None:
+                    throw_error(
+                        f"Value {str_rep} needs to be a boolean (true or false) but cannot be interpretted as such"
+                    )
+                solid = parsed
+
         if center == None:
             throw_error("line missing start parameter which is needed")
         if height == None:
@@ -202,10 +212,14 @@ class Interpreter:
             throw_error("line missing width parameter which is needed")
         if color == None:
             throw_error("line missing color parameter which is needed")
+        if solid == None:
+            solid = False
+        if solid == True and border_width != None:
+            throw_error("Solid cannot be true and a border_width specified")
         if border_width == None:
             border_width = 1
 
-        self.rects.append(Rect(center, height, width, color, self.canvas, border_width))
+        self.rects.append(Rect(center, height, width, color, self.canvas, border_width, solid))
 
     # -------------------------------------------------------------------------
 
@@ -215,6 +229,7 @@ class Interpreter:
         width: int = None
         border_width: int = None
         color: tuple = None
+        solid: bool = None
 
         for child in node.children:
             if "center" in child.value:
@@ -262,6 +277,15 @@ class Interpreter:
                     )
                 color = parsed
 
+            if "solid" in child.value:
+                str_rep = child.value.split("=")[1]
+                parsed = str_to_bool(str_rep)
+                if parsed == None:
+                    throw_error(
+                        f"Value {str_rep} needs to be a boolean (true or false) but cannot be interpretted as such"
+                    )
+                solid = parsed
+
         if center == None:
             throw_error("line missing start parameter which is needed")
         if height == None:
@@ -270,11 +294,15 @@ class Interpreter:
             throw_error("line missing width parameter which is needed")
         if color == None:
             throw_error("line missing color parameter which is needed")
+        if solid == None:
+            solid = False
+        if solid == True and border_width != None:
+            throw_error("Solid cannot be true and a border_width specified")
         if border_width == None:
             border_width = 1
 
         self.ellipses.append(
-            Ellipse(center, height, width, color, self.canvas, border_width)
+            Ellipse(center, height, width, color, self.canvas, border_width, solid)
         )
 
     # -------------------------------------------------------------------------
@@ -289,7 +317,7 @@ class Interpreter:
 
         while running:
 
-            clock.tick(60)
+            clock.tick(10)
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     running = False

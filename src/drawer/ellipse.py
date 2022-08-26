@@ -10,9 +10,10 @@ class Ellipse:
         color: tuple,
         parent: pygame.Surface,
         border_width: int,
+        solid: bool,
     ) -> None:
         """
-        Initialization of all variables defined as being necessary to draw and or manipulate a line
+        Initialization of all variables defined as being necessary to draw and or manipulate an ellipse
         """
         self.center: tuple = center
         self.height: int = height
@@ -20,21 +21,24 @@ class Ellipse:
         self.color: tuple = color
         self.parent: pygame.Surface = parent
         self.border_width = border_width
+        self.solid = solid
 
     # -------------------------------------------------------------------------
 
     def draw(self) -> None:
         """
-        Draws a line using the parameters passed into the function on the parent surface passed during initialization
+        Draws an ellipse using the parameters passed into the function on the parent surface passed during initialization
         """
         left = self.center[0] - (self.width / 2)
         top = self.center[1] - (self.height / 2)
 
+        if self.solid == True:
+            bw = 0
+        else:
+            bw = self.border_width
+
         pygame.draw.ellipse(
-            self.parent,
-            self.color,
-            pygame.Rect(left, top, self.width, self.height),
-            self.border_width
+            self.parent, self.color, pygame.Rect(left, top, self.width, self.height), bw
         )
 
     # -------------------------------------------------------------------------
