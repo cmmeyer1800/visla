@@ -85,4 +85,4 @@ The following list will be used to track the features that I would like to add t
 
 The following list will be used to track the codebase features that I would like to add to Visla in order to make it more maintainable, listed in order of priority:
 
-- Automatic Formatting on Commit
+- ~~Automatic Formatting on Commit~~
