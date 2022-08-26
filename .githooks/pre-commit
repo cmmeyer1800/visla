@@ -1,0 +1,32 @@
+#! /opt/homebrew/bin/python3.9
+
+import os
+import subprocess
+
+def main() -> None:
+
+    print("")
+
+    print("<Preparing For commit>")
+
+    print("\t<Running Automatic Code Formatter Over Repo>")
+
+    output = subprocess.run(["python3", "-m", "black", "."], capture_output=True)
+    [print(f"\t\t{row}") for row in output.stdout.decode("utf-8").split('\n')]
+
+    print("\t</Running Automatic Code Formatter Over Repo>")
+
+    print("\t<Adding Formatter Changes>")
+    print("\t\tgit add .")
+    subprocess.run(["git", "add", "."])
+    print("\t</Adding Formatter Changes>")
+    
+    print("</Preparing For commit>")
+
+    print("<commiting>")
+    print("\tDone!")
+    print("</commiting>\n")
+
+
+
+main()
