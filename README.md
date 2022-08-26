@@ -58,7 +58,7 @@ Which will create the following drawing:
 
 In this example the 4 Functional blocks belong to the canvas in which they are drawn and have the parameters that specify things such as bounding boxes, colors, etc.
 
-## Features In Progress:
+## Features To Do:
 
 The following list will be used to track the features that I would like to add to Visla to make it a more rich project, listed in order of priority:
 
@@ -79,3 +79,10 @@ The following list will be used to track the features that I would like to add t
         - ~~Background Color~~
     - General
         - ~~Solid Enclosed Shapes~~
+
+
+## Code Base Features To Do:
+
+The following list will be used to track the codebase features that I would like to add to Visla in order to make it more maintainable, listed in order of priority:
+
+- Automatic Formatting on Commit
