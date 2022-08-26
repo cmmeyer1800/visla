@@ -1,0 +1,16 @@
+canvas{
+    width = 300;
+    height = 300;
+    line {
+        width = 10;
+        start = (0,0);
+        end = (100, 100);
+        color = (0, 255, 255);
+    };
+    line {
+        width = 10;
+        start = (0,100);
+        end = (100, 0);
+        color = (255, 255, 0);    
+    }
+};
